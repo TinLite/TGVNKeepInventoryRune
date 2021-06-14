@@ -25,7 +25,7 @@ public class EventListener implements Listener {
                     event.getDrops().clear();
                 }
                 if (item != null) player.sendMessage(ConfigManager.getMessage("RuneUsed"));
-                    else player.sendMessage("LastRuneUsed");
+                    else player.sendMessage(ConfigManager.getMessage("LastRuneUsed"));
                 break;
             }
     }
