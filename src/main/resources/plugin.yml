@@ -1,0 +1,9 @@
+name: TGVNKeepInventoryRune
+version: ${project.version}
+main: vn.vinhgaming.tgvnkeepinventoryrune.TGVNKeepInventoryRune
+commands:
+  keepinventoryrune:
+    description: Main command
+    aliases:
+      - kir
+    usage: /<command> [give/reload]

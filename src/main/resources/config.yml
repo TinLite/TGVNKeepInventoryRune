@@ -1,0 +1,17 @@
+Settings:
+  KeepLevel: true
+  KeepInventory: true
+
+Rune:
+  Material: "EMERALD"
+  Name: "&aKeepInventoryRune"
+  Lore:
+    - "&eNgọc này sẽ giúp giữ túi đồ của bạn"
+    - "&ekhông rơi ra mỗi khi bạn chết."
+    - " "
+    - "&eMỗi lần chết sẽ mất 1 viên."
+
+Message:
+  NoPermission: "&cBạn không có quyền sử dụng lệnh này."
+  RuneUsed: "&a&l! &aRune đã giữ lại túi đồ của bạn."
+  LastRuneUsed: "&a&l! &aBạn vừa sử dụng Rune cuối cùng trong túi đồ. Hãy cân nhắc mua thêm."
