@@ -15,3 +15,6 @@ Message:
   NoPermission: "&cBạn không có quyền sử dụng lệnh này."
   RuneUsed: "&a&l! &aRune đã giữ lại túi đồ của bạn."
   LastRuneUsed: "&a&l! &aBạn vừa sử dụng Rune cuối cùng trong túi đồ. Hãy cân nhắc mua thêm."
+
+# Cấm đụng
+Config-Version: 1
