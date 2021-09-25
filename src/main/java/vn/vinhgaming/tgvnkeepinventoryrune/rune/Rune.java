@@ -1,14 +1,15 @@
-package vn.vinhgaming.tgvnkeepinventoryrune;
+package vn.vinhgaming.tgvnkeepinventoryrune.rune;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import vn.vinhgaming.tgvnkeepinventoryrune.Utils;
 
 import java.util.List;
 
 public class Rune {
-    private static ItemStack rune;
-    private static ItemMeta meta;
+    private ItemStack rune;
+    private ItemMeta meta;
 
     /**
      * Init Rune item
@@ -16,7 +17,7 @@ public class Rune {
      * @param name Rune item name
      * @param lore Lore
      */
-    public static void init(String material, String name, List<String> lore) {
+    public void init(String material, String name, List<String> lore) {
         rune = new ItemStack(Material.getMaterial(material), 1);
         meta = rune.getItemMeta();
         meta.setDisplayName(Utils.translate(name));
@@ -29,7 +30,7 @@ public class Rune {
      * @param amount ItemStack amount
      * @return ItemStack
      */
-    public static ItemStack getRune(int amount) {
+    public ItemStack getRune(int amount) {
         if (amount < 1) return null;
         ItemStack nrune = rune.clone();
         nrune.setAmount(amount);
@@ -41,7 +42,7 @@ public class Rune {
      * @param item Item to check. Can be null.
      * @return true if item are rune item. false if not or null.
      */
-    public static boolean checkRune(ItemStack item) {
+    public boolean checkRune(ItemStack item) {
         if (item == null) return false;
         return item.getType().equals(rune.getType()) && item.getItemMeta().equals(meta);
     }

@@ -6,4 +6,4 @@ commands:
     description: Main command
     aliases:
       - kir
-    usage: /<command> [give/reload]
+    usage: /<command> [giveinventory/giveitem/removerune/reload]

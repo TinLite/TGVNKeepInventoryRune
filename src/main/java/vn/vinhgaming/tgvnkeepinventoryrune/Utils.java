@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
-    public static String translate(String s) {
-        return ChatColor.translateAlternateColorCodes('&', s);
+    public static String translate(String string) {
+        return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    public static List<String> translate(List<String> ls) {
-        List<String> nls = new ArrayList<>();
-        for (String s : ls)
-            nls.add(translate(s));
-        return nls;
+    public static List<String> translate(List<String> stringList) {
+        List<String> newStringList = new ArrayList<>();
+        for (String string : stringList)
+            newStringList.add(translate(string));
+        return newStringList;
     }
 }

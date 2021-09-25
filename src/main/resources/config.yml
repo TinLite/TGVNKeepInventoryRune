@@ -1,20 +1,39 @@
-Settings:
-  KeepLevel: true
-  KeepInventory: true
-
-Rune:
+InventoryRune:
   Material: "EMERALD"
   Name: "&aKeepInventoryRune"
+  Settings:
+    KeepLevel: true
+    KeepInventory: true
   Lore:
-    - "&eNgọc này sẽ giúp giữ túi đồ của bạn"
+    - "&eNgọc này sẽ giúp giữ &6túi đồ &ecủa bạn"
     - "&ekhông rơi ra mỗi khi bạn chết."
     - " "
     - "&eMỗi lần chết sẽ mất 1 viên."
 
+ItemRune:
+  Material: "EMERALD"
+  Name: "&aKeepItemRune"
+  Lore:
+    - "&eNgọc này sẽ giúp giữ &6vật phẩm &ecủa bạn"
+    - "&ekhông rơi ra mỗi khi bạn chết."
+    - "&eKéo - thả vào vật phẩm để gắn ngọc này lên"
+    - "&evật phẩm bạn muốn keep."
+    - "&eMỗi lần chết vật phẩm sẽ mất trạng thái bảo vệ."
+  ProtectLoreLine: "&e[&aĐang được bảo vệ&e]"
+  WhitelistedMaterial:
+    - "DIAMOND_PICKAXE"
+    - "DIAMOND_CHESTPLATE"
+    #- "*" # Cái này có ưu tiên cao nhất, cho phép áp vào toàn bộ mọi thứ, kể cả block.
+
 Message:
   NoPermission: "&cBạn không có quyền sử dụng lệnh này."
-  RuneUsed: "&a&l! &aRune đã giữ lại túi đồ của bạn."
-  LastRuneUsed: "&a&l! &aBạn vừa sử dụng Rune cuối cùng trong túi đồ. Hãy cân nhắc mua thêm."
+  InventoryRuneUsed: "&a&l! &aInventoryRune đã giữ lại túi đồ của bạn."
+  LastInventoryRuneUsed: "&a&l! &aBạn vừa sử dụng InventoryRune cuối cùng trong túi đồ. Hãy cân nhắc mua thêm."
+  ItemRuneAppied: "&a&l! &aGiờ vật phẩm này sẽ không rơi khỏi túi đồ khi chết."
+  ItemRuneErrorProtectedAlready: "&c&l! &cVật phẩm này đã được ItemRune bảo vệ sẵn rồi, không thể áp dụng thêm."
+  ItemRuneErrorStackedItem: "&c&l! &cBạn đang cầm quá nhiều Rune. Bạn chỉ có thể áp từng Rune vào từng Item riêng biệt." # Thông báo khi
+  ItemRuneErrorStackedRune: "&c&l! &cBạn không thể áp Rune vào một stack item. Bạn chỉ có thể áp từng Rune vào từng Item riêng biệt."
+  ItemRuneUsed: "&a&l! &aMột vài item đã được giữ lại bởi ItemRune. Trạng thái bảo vệ của các Item này đã biến mất."
 
 # Cấm đụng
-Config-Version: 1
+Config-Version: 2
