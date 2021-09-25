@@ -85,6 +85,7 @@ public class Commands implements CommandExecutor {
             ItemStack item = player.getInventory().getItemInMainHand();
             item = TGVNKeepInventoryRune.getItemRune().removeLore(item);
             player.getInventory().setItemInMainHand(item);
+            return true;
         }
         if (args[0].equalsIgnoreCase("reload")) {
             ConfigManager.init();
