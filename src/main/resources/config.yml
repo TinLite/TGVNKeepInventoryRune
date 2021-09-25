@@ -19,9 +19,12 @@ ItemRune:
     - "&eKéo - thả vào vật phẩm để gắn ngọc này lên"
     - "&evật phẩm bạn muốn keep."
     - "&eMỗi lần chết vật phẩm sẽ mất trạng thái bảo vệ."
-  ProtectLoreLine: "&e[&aĐang được bảo vệ&e]"
+  ProtectLoreLine: "&e&l[&aĐang được bảo vệ&e&l]"
   WhitelistedMaterial:
-    - "DIAMOND_PICKAXE"
+    - "DIAMOND_BOOTS"
+    - "DIAMOND_HELMET"
+    - "DIAMOND_LEGGINGS"
+    - "DIAMOND_SWORD"
     - "DIAMOND_CHESTPLATE"
     #- "*" # Cái này có ưu tiên cao nhất, cho phép áp vào toàn bộ mọi thứ, kể cả block.
 
