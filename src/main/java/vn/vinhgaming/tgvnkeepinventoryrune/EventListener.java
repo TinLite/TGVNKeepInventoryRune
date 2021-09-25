@@ -66,8 +66,8 @@ public class EventListener implements Listener {
                     event.setKeepInventory(true);
                     event.getDrops().clear();
                 }
-                if (item != null) player.sendMessage(ConfigManager.getMessage("RuneUsed"));
-                    else player.sendMessage(ConfigManager.getMessage("LastRuneUsed"));
+                if (item != null) player.sendMessage(ConfigManager.getMessage("InventoryRuneUsed"));
+                    else player.sendMessage(ConfigManager.getMessage("LastInventoryRuneUsed"));
                 // We return because inventory are keeped by InventoryRune, we don't want to check and remove lore of already keeped items
                 return;
             }
