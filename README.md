@@ -24,7 +24,7 @@ Giữ toàn bộ túi đồ người chơi, có mức độ ưu tiên cao nhất
 Chỉ cần khi chết có Rune này trong túi đồ thì sẽ giữ lại túi đồ của người chơi đó. Mỗi lần chết trừ đi 1 Rune.  
 Mức độ ưu tiên cao nhất.
 
-## KeepItemRune
+### KeepItemRune
 
 Rune này sẽ giữ lại một vật phẩm bất kì của người chơi do người chơi chỉ định.  
 Khi chết, Rune này chỉ phát huy tác dụng khi KeepInventoryRune không tồn tại trong túi đồ.  
