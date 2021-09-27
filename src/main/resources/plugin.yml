@@ -1,9 +1,10 @@
 name: TGVNKeepInventoryRune
 version: ${project.version}
 main: vn.vinhgaming.tgvnkeepinventoryrune.TGVNKeepInventoryRune
+api-version: 1.13
 commands:
   keepinventoryrune:
     description: Main command
     aliases:
       - kir
-    usage: /<command> [giveinventory/giveitem/removerune/reload]
+    usage: /<command> [give/removeprotection/reload]

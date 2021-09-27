@@ -6,7 +6,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import vn.vinhgaming.tgvnkeepinventoryrune.rune.Rune;
+
+import java.util.Locale;
 
 public class Commands implements CommandExecutor {
     @Override
@@ -16,81 +18,67 @@ public class Commands implements CommandExecutor {
             return true;
         }
         if (args.length == 0) return false;
-        if (args[0].equalsIgnoreCase("giveinventory")) {
-            if (args.length >= 3) {
-                Player player = Bukkit.getPlayerExact(args[2]);
-                if (player == null) {
-                    sender.sendMessage(ChatColor.RED + "Player not found.");
+        switch (args[0].toLowerCase(Locale.ROOT)) {
+            case "give":
+                if (args.length < 2) {
+                    sender.sendMessage(String.format(ChatColor.RED + "Missing argruments. Please type /%s help for help", label));
                     return true;
                 }
-                player.getInventory().addItem(TGVNKeepInventoryRune.getInventoryRune().getRune(Integer.parseInt(args[1])));
-                sender.sendMessage(ChatColor.GREEN + "Added " + args[1] + " rune to " + args[2] + "'s inventory");
-                return true;
-            }
-            if (!(sender instanceof Player)) {
-                sender.sendMessage("Because console can't receive item, the give command should be in format /kir give <amount> <player name>. Please try again.");
-                return true;
-            }
-            if (args.length == 2) {
-                try {
-                    ((Player) sender).getInventory().addItem(TGVNKeepInventoryRune.getInventoryRune().getRune(Integer.parseInt(args[1])));
-                } catch (NumberFormatException exception) {
-                    sender.sendMessage(String.format("%s is not a number.", args[1]));
-                }
-            } else ((Player) sender).getInventory().addItem(TGVNKeepInventoryRune.getInventoryRune().getRune(1));
-            sender.sendMessage("You received rune.");
-            return true;
-        }
-        if (args[0].equalsIgnoreCase("giveitem")) {
-            if (args.length >= 3) {
-                Player player = Bukkit.getPlayerExact(args[2]);
-                if (player == null) {
-                    sender.sendMessage(ChatColor.RED + "Player not found.");
+                Rune rune;
+                int amount = 1;
+                if (args[1].equalsIgnoreCase("inventory")) rune = TGVNKeepInventoryRune.getInventoryRune();
+                else if (args[1].equalsIgnoreCase("item")) rune = TGVNKeepInventoryRune.getItemRune();
+                else {
+                    sender.sendMessage(ChatColor.RED + String.format("%s is not a vaild rune type. Available type: Inventory, Item", args[1]));
                     return true;
                 }
-                player.getInventory().addItem(TGVNKeepInventoryRune.getItemRune().getRune(Integer.parseInt(args[1])));
-                sender.sendMessage(ChatColor.GREEN + "Added " + args[1] + " rune to " + args[2] + "'s inventory");
-                return true;
-            }
-            if (!(sender instanceof Player)) {
-                sender.sendMessage("Because console can't receive item, the give command should be in format /kir give <amount> <player name>. Please try again.");
-                return true;
-            }
-            if (args.length == 2) {
-                try {
-                    ((Player) sender).getInventory().addItem(TGVNKeepInventoryRune.getItemRune().getRune(Integer.parseInt(args[1])));
-                } catch (NumberFormatException exception) {
-                    sender.sendMessage(String.format("%s is not a number.", args[1]));
+                if (args.length >= 3) {
+                    try {
+                        amount = Integer.parseInt(args[2]);
+                    } catch (NumberFormatException exception) {
+                        sender.sendMessage(String.format(ChatColor.RED + "%s is not a number.", args[2]));
+                        return true;
+                    }
                 }
-            } else ((Player) sender).getInventory().addItem(TGVNKeepInventoryRune.getItemRune().getRune(1));
-            sender.sendMessage("You received rune.");
-            return true;
-        }
-        if (args[0].equalsIgnoreCase("removerune")) {
-            Player player;
-            if (args.length == 1) {
+                if (!(sender instanceof Player) && args.length < 4) {
+                    sender.sendMessage(ChatColor.RED + "Console must add player's name to the command.");
+                    return true;
+                }
+                if (args.length >= 4) {
+                    Player target = Bukkit.getPlayerExact(args[3]);
+                    if (target == null) {
+                        sender.sendMessage(ChatColor.RED + "Player not found.");
+                        return true;
+                    }
+                    target.getInventory().addItem(rune.getRune(amount));
+                    sender.sendMessage(ChatColor.GREEN + String.format("%s received %d rune(s).", args[3], amount));
+                    return true;
+                }
+                ((Player) sender).getInventory().addItem(rune.getRune(amount));
+                sender.sendMessage(ChatColor.GREEN + String.format("You received %d rune(s).", amount));
+                return true;
+            case "removeprotection":
+            case "rp":
+                // /kir removeprotection
                 if (!(sender instanceof Player)) {
-                    sender.sendMessage(label + " removerune <player>");
+                    sender.sendMessage(ChatColor.RED + "Only player can execute this command.");
                     return true;
                 }
-                player = (Player) sender;
-            } else {
-                Player p = Bukkit.getPlayerExact(args[1]);
-                if (p == null) {
-                    sender.sendMessage(ChatColor.RED + "Player not found.");
-                    return true;
-                }
-                player = p;
-            }
-            ItemStack item = player.getInventory().getItemInMainHand();
-            item = TGVNKeepInventoryRune.getItemRune().removeLore(item);
-            player.getInventory().setItemInMainHand(item);
-            return true;
-        }
-        if (args[0].equalsIgnoreCase("reload")) {
-            ConfigManager.init();
-            sender.sendMessage(ChatColor.GREEN + "Configuration reloaded.");
-            return true;
+                TGVNKeepInventoryRune.getItemRune().removeLore(((Player) sender).getInventory().getItemInMainHand());
+                sender.sendMessage(ChatColor.GREEN + "Attempted removing protection status from item in your main hand.");
+                return true;
+            case "reload":
+                ConfigManager.init();
+                sender.sendMessage(ChatColor.GREEN + "Configuration reloaded.");
+                return true;
+            case "help":
+                sender.sendMessage(Utils.translate("&f&lTG&c&lVN&aKeepInventoryRune &ev" + TGVNKeepInventoryRune.getInstance().getDescription().getVersion() + " by VinhGaming"));
+                sender.sendMessage(Utils.translate("&a/kir give <inventory/item> [amount] [playername] &eGive rune to player"));
+                sender.sendMessage(Utils.translate("&a/kir removeprotection|rp &eRemove ItemRune protection status from item in your main hand"));
+                sender.sendMessage(Utils.translate("&a/kir reload &eReload configuration"));
+                return true;
+            case "default":
+                sender.sendMessage(ChatColor.RED + String.format("Unknown command. Please type /%s help for help.", label));
         }
         return false;
     }
