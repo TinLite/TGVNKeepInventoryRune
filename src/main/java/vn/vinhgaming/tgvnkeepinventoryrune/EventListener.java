@@ -50,8 +50,11 @@ public class EventListener implements Listener {
         }
     }
 
-    @EventHandler
+    // This event should be the final thing come into play
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onDeath(PlayerDeathEvent event) {
+        // we skip if the player's inventory are already keeped by other plugin, or drops nothing (such as gamerule, worldguard, etc...)
+        if (event.getKeepInventory() || event.getDrops().isEmpty()) return;
         Player player = event.getEntity();
         PlayerInventory inventory = player.getInventory();
         for (int index = 0 ; index < inventory.getSize(); index++)
