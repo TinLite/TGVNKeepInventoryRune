@@ -39,7 +39,6 @@ Nếu như không truyền tham số vào `[người chơi]`, thì lệnh sẽ m
 
 |Command|Mô tả|
 |---|---|
-|`/kir giveinventory [số lượng] [người chơi]`|Give KeepInventoryRune cho người chơi|
-|`/kir giveitem [số lượng] [người chơi]`|Give KeepItemRune cho người chơi|
+|`/kir give <inventory/item> [số lượng] [người chơi]	`|Give Rune cho người chơi|
 |`/kir removerune [người chơi]`|Gỡ KeepItemRune ra khỏi item đang cầm trên MainHand của người chơi|
 |`/kir reload`|Reload plugin|
