@@ -53,10 +53,11 @@ public class EventListener implements Listener {
     // This event should be the final thing come into play
     @EventHandler(priority = EventPriority.LOWEST)
     public void onDeath(PlayerDeathEvent event) {
-        // we skip if the player's inventory are already keeped by other plugin, or drops nothing (such as gamerule, worldguard, etc...)
+        // we skip if the player's inventory are already keeped by other plugin, or drops nothing (which are caused by gamerule, worldguard, etc...)
         if (event.getKeepInventory() || event.getDrops().isEmpty()) return;
         Player player = event.getEntity();
         PlayerInventory inventory = player.getInventory();
+        // InventoryRune check
         for (int index = 0 ; index < inventory.getSize(); index++)
             if (TGVNKeepInventoryRune.getInventoryRune().checkRune(inventory.getItem(index))) {
                 ItemStack item = TGVNKeepInventoryRune.getInventoryRune().getRune(inventory.getItem(index).getAmount() - 1);
@@ -74,6 +75,7 @@ public class EventListener implements Listener {
                 // We return because inventory are keeped by InventoryRune, we don't want to check and remove lore of already keeped items
                 return;
             }
+        // ItemRune check, because the whole inventory are not kept so we need to check each item and keep them manually
         ItemRune itemRune = TGVNKeepInventoryRune.getItemRune();
         ItemStack[] contents = new ItemStack[inventory.getSize()];
         boolean weHaveSomethingToReturn = false;
@@ -86,6 +88,7 @@ public class EventListener implements Listener {
                 event.getDrops().remove(itemStack);
             }
         }
-        if (weHaveSomethingToReturn) itemRune.addInventory(event.getEntity().getName(), contents);
+        if (weHaveSomethingToReturn)
+            itemRune.addInventory(event.getEntity().getName(), contents);
     }
 }
