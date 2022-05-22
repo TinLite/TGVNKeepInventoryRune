@@ -77,7 +77,7 @@ public class Commands implements CommandExecutor {
                 sender.sendMessage(Utils.translate("&a/kir removeprotection|rp &eRemove ItemRune protection status from item in your main hand"));
                 sender.sendMessage(Utils.translate("&a/kir reload &eReload configuration"));
                 return true;
-            case "default":
+            default:
                 sender.sendMessage(ChatColor.RED + String.format("Unknown command. Please type /%s help for help.", label));
         }
         return false;
