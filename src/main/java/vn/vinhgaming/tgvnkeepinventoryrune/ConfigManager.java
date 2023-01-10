@@ -22,18 +22,8 @@ public class ConfigManager {
             }
             Bukkit.getPluginManager().disablePlugin(plugin);
         }
-        TGVNKeepInventoryRune.getInventoryRune().init(
-                config.getString("InventoryRune.Material"),
-                config.getString("InventoryRune.Name"),
-                config.getStringList("InventoryRune.Lore")
-        );
-        TGVNKeepInventoryRune.getItemRune().init(
-                config.getString("ItemRune.Material"),
-                config.getString("ItemRune.Name"),
-                config.getStringList("ItemRune.Lore"),
-                config.getString("ItemRune.ProtectLoreLine"),
-                config.getStringList("ItemRune.WhitelistedMaterial")
-        );
+        TGVNKeepInventoryRune.getInventoryRune().init(config.getConfigurationSection("InventoryRune"));
+        TGVNKeepInventoryRune.getItemRune().init(config.getConfigurationSection("ItemRune"));
     }
 
     public static String getMessage(String path) {

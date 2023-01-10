@@ -1,10 +1,10 @@
 package vn.vinhgaming.tgvnkeepinventoryrune.rune;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import vn.vinhgaming.tgvnkeepinventoryrune.ConfigManager;
-import vn.vinhgaming.tgvnkeepinventoryrune.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,15 +15,18 @@ public class ItemRune extends Rune {
     String protectedLore;
     Map<String, ItemStack[]> invList;
     List<String> whitelistedMaterial;
-    public void init(String material, String name, List<String> lore, String protectedLore, List<String> whitelistedMaterial) {
-        this.whitelistedMaterial = whitelistedMaterial;
-        this.protectedLore = Utils.translate(protectedLore);
+
+    @Override
+    public void init(ConfigurationSection section) {
+        this.whitelistedMaterial = section.getStringList("WhitelistedMaterial");
+        this.protectedLore = section.getString("ProtectLoreLine");
         invList = new HashMap<>();
-        init(material, name, lore);
+        super.init(section);
     }
 
     /**
      * Check if item contain the defined lore
+     *
      * @param item The item to check
      * @return true false, what else?
      */

@@ -1,6 +1,9 @@
 package vn.vinhgaming.tgvnkeepinventoryrune.rune;
 
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import vn.vinhgaming.tgvnkeepinventoryrune.Utils;
@@ -25,8 +28,22 @@ public class Rune {
         rune.setItemMeta(meta);
     }
 
+    public void init(ConfigurationSection section) {
+        init(
+                section.getString("Material"),
+                section.getString("Name"),
+                section.getStringList("Lore"));
+        if (section.isSet("Glow") && section.getBoolean("glow")) {
+            rune.addUnsafeEnchantment(Enchantment.LUCK, 1);
+            ItemMeta meta = rune.getItemMeta();
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            rune.setItemMeta(meta);
+        }
+    }
+
     /**
      * Get rune item
+     *
      * @param amount ItemStack amount
      * @return ItemStack
      */
