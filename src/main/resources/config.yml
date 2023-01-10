@@ -1,6 +1,7 @@
 InventoryRune:
   Material: "EMERALD"
   Name: "&aKeepInventoryRune"
+  # Glow: true
   Settings:
     KeepLevel: true
     KeepInventory: true
@@ -13,6 +14,7 @@ InventoryRune:
 ItemRune:
   Material: "EMERALD"
   Name: "&aKeepItemRune"
+  # Glow: true
   Lore:
     - "&eNgọc này sẽ giúp giữ &6vật phẩm &ecủa bạn"
     - "&ekhông rơi ra mỗi khi bạn chết."
