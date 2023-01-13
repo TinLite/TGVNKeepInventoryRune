@@ -12,7 +12,6 @@ import java.util.List;
 
 public class Rune {
     private ItemStack rune;
-    private ItemMeta meta;
 
     /**
      * Init Rune item
@@ -22,7 +21,7 @@ public class Rune {
      */
     public void init(String material, String name, List<String> lore) {
         rune = new ItemStack(Material.getMaterial(material), 1);
-        meta = rune.getItemMeta();
+        ItemMeta meta = rune.getItemMeta();
         meta.setDisplayName(Utils.translate(name));
         meta.setLore(Utils.translate(lore));
         rune.setItemMeta(meta);
@@ -33,7 +32,7 @@ public class Rune {
                 section.getString("Material"),
                 section.getString("Name"),
                 section.getStringList("Lore"));
-        if (section.isSet("Glow") && section.getBoolean("glow")) {
+        if (section.isSet("Glow") && section.getBoolean("Glow")) {
             rune.addUnsafeEnchantment(Enchantment.LUCK, 1);
             ItemMeta meta = rune.getItemMeta();
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -61,6 +60,7 @@ public class Rune {
      */
     public boolean checkRune(ItemStack item) {
         if (item == null) return false;
-        return item.getType().equals(rune.getType()) && item.getItemMeta().equals(meta);
+        // Support for < 1.13.2 should be dropped. Then I can use NBT Tag and sleep well at night.
+        return item.getType().equals(rune.getType()) && item.getItemMeta().getDisplayName().equals(item.getItemMeta().getDisplayName()) && item.getItemMeta().getLore().equals(item.getItemMeta().getLore());
     }
 }
